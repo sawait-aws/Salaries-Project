@@ -1,0 +1,629 @@
+/* Body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4ff;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container styles */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #f0f4ff;
+}
+
+/* Login box */
+.login-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 350px;
+}
+
+/* Title */
+.login-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4c84d3;
+    margin-bottom: 20px;
+}
+
+/* Input fields */
+.form-control {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #6c757d;
+    background-color: #f7f7f7;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #4c84d3;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(76, 132, 211, 0.2);
+}
+
+/* Button */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to right, #4c84d3, #00aaff);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-login:hover {
+    background: linear-gradient(to right, #00aaff, #4c84d3);
+}
+
+/* Forgot password */
+.forgot-password {
+    margin-top: 20px;
+}
+
+.forgot-password a {
+    color: #b0b7c3;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+/* Invalid feedback */
+.invalid-feedback {
+    color: #e3342f;
+    font-size: 0.875rem;
+}
+
+/* Modal background */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal box */
+.modal-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    max-width: 90%;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Close button */
+.modal-close {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* General Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4ff;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container Styles for Dashboards */
+.dashboard-container {
+    width: 90%;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Profile Section */
+.profile-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-section img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-section h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #4c84d3;
+}
+
+.profile-section p {
+    font-size: 16px;
+    color: #6c757d;
+}
+
+/* Employee/Salary List Section */
+.list-section {
+    margin-bottom: 30px;
+}
+
+.list-section h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4c84d3;
+    margin-bottom: 15px;
+}
+
+.list-boxes {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.list-box {
+    background-color: #fbf8f8;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-right: 15px;
+    padding: 15px;
+    width: 220px;
+    flex: 0 0 auto;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+    text-decoration: none;  /* Remove underline */
+    color: #333;  /* Text color */
+}
+
+.list-box:hover {
+    transform: scale(1.05);
+    background-color: #e6e6e6;
+}
+
+.list-box img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.list-box h4 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #4c84d3;
+}
+
+.list-box p {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+/* Action Buttons */
+.btn-action {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.btn-action:hover {
+    transform: scale(1.1);
+}
+
+/* Add Employee Form */
+.add-employee-form {
+    text-align: center;
+    padding: 20px;
+    background-color: #e6f0ff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.add-employee-form input[type="text"],
+.add-employee-form input[type="number"],
+.add-employee-form input[type="password"],
+.add-employee-form input[type="file"] {
+    width: 90%;
+    max-width: 400px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    font-size: 14px;
+    box-shadow: 0 0 5px rgba(76, 132, 211, 0.1);
+}
+
+.add-employee-form button {
+    padding: 12px 30px;
+    background: linear-gradient(to right, #4c84d3, #00aaff);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 15px;
+}
+
+.add-employee-form button:hover {
+    background: linear-gradient(to right, #00aaff, #4c84d3);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.close-modal {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.close-modal:hover {
+    background-color: #c9302c;
+}
+
+.upload-csv-section {
+    margin-top: 30px;
+    background-color: #f0f4ff; /* Match the dashboard background */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.upload-csv-section h3 {
+    font-size: 20px;
+    color: #4c84d3; /* Matches the color scheme */
+    margin-bottom: 20px;
+}
+
+.upload-csv-section input[type="file"] {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: calc(100% - 20px);
+    color: #6c757d;
+    cursor: pointer;
+}
+
+.upload-csv-section button[type="submit"] {
+    padding: 10px 30px;
+    background: linear-gradient(to right, #4c84d3, #00aaff);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+}
+
+.upload-csv-section button[type="submit"]:hover {
+    background: linear-gradient(to right, #00aaff, #4c84d3);
+}
+
+/* Salary Section */
+.salary-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Salary Title */
+.salary-title {
+    font-size: 24px;
+    color: #4c84d3;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Salary Card Container */
+.salary-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Individual Salary Item Card */
+.salary-item {
+    background: #f0f4ff;
+    border-radius: 10px;
+    padding: 15px;
+    width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+/* Salary Item Hover Effect */
+.salary-item:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Salary Item Headings */
+.salary-item h4 {
+    font-size: 16px;
+    color: #4c84d3;
+    margin-bottom: 8px;
+}
+
+/* Salary Item Values */
+.salary-item p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Logout Button Styling */
+.btn-logout {
+    padding: 10px 20px;
+    background: linear-gradient(to right, #4c84d3, #00aaff);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-logout:hover {
+    background: linear-gradient(to right, #00aaff, #4c84d3);
+}
+/* Modal overlay styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal box */
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    width: 400px;
+    max-width: 100%;
+    position: relative;
+    text-align: center;
+}
+
+/* Close button styles */
+.close-modal {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    background: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Input fields styles */
+.modal-content input[type="text"], 
+.modal-content input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Update button */
+.modal-content button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4c84d3;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.modal-content button[type="submit"]:hover {
+    background-color: #367bb5;
+}
+/* Cancel Button Styling */
+.btn-cancel {
+    display: inline-block;
+    margin-top: 20px; /* Added space between the button and the elements above */
+    padding: 10px 20px;
+    color: white; /* Updated color for better contrast */
+    background-color: #d9534f; /* New color for the cancel button */
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-cancel:hover {
+    background-color: #c9302c; /* Darker shade on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05); /* Slight scale effect for hover */
+}
+
+.manager-view-alert {
+    background-color: #f0f4f8; /* Soft, neutral background color */
+    border-left: 4px solid #4a90e2; /* Accent border in a primary color */
+    padding: 15px; /* Padding inside the box */
+    margin: 20px 0; /* Margin to space the alert from other elements */
+    border-radius: 6px; /* Rounded corners to match modern design */
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* Clean, modern font */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.manager-view-alert p {
+    margin: 0; /* Remove default margin */
+    font-size: 17px; /* Slightly larger font for better readability */
+    color: #2c3e50; /* Darker shade for better contrast */
+    font-weight: 600; /* Semi-bold to make the text stand out */
+    letter-spacing: 0.5px; /* Slight spacing for a cleaner look */
+}
+
+.manager-view-alert p span {
+    color: #4a90e2; /* Accent color to highlight 'as a manager' */
+    font-weight: 700; /* Bold the emphasized text */
+}
+.btn-return-dashboard {
+    display: inline-block;
+    background-color: #4a90e2; /* Match the primary color */
+    color: #fff; /* White text for contrast */
+    padding: 10px 20px; /* Padding for the button */
+    margin-top: 10px; /* Space between the alert text and the button */
+    border-radius: 4px; /* Slight rounding for a modern look */
+    text-decoration: none; /* Remove the underline */
+    font-weight: 600; /* Bold for emphasis */
+    font-size: 16px; /* A comfortable font size */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.btn-return-dashboard:hover {
+    background-color: #357ABD; /* Darker blue on hover */
+}
+
+/* Edit and Delete Buttons - Styling */
+.btn-action {
+    background-color: #4c84d3; /* Soft blue to match the overall design */
+    color: white;
+    border: none;
+    padding: 10px 20px; /* Padding for a comfortable click area */
+    border-radius: 5px; /* Slight rounded corners for modern look */
+    font-size: 16px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 5px; /* Add space between buttons */
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+    cursor: pointer;
+    text-decoration: none; /* Remove underline for links */
+}
+
+.btn-action i {
+    margin-right: 8px; /* Space between icon and text */
+    font-size: 18px;
+    color: white;
+}
+
+.btn-action:hover {
+    background-color: #357ABD; /* Darker blue on hover */
+    transform: scale(1.05); /* Slight hover effect for interaction */
+}
+
+.delete-employee-btn i {
+    color: white; /* Ensure the delete icon is white like the text */
+}
+/* Delete button specific styles */
+.delete-employee-btn {
+    background-color: #d9534f; /* Red background for delete button */
+}
+
+.delete-employee-btn:hover {
+    background-color: #c9302c; /* Darker red on hover */
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto; /* Center align the alert */
+    text-align: center; /* Center the text */
+    box-sizing: border-box;
+    opacity: 1; /* Fully visible */
+    transition: opacity 1s ease-out; /* Smooth transition for opacity */
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-fade-out {
+    opacity: 0; /* Fully transparent */
+}
