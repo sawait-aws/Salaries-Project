@@ -41,7 +41,7 @@
     @if(session('showUnauthorizedModal'))
         @include('components.unauthorized-modal')
     @endif
-
+    <script src="{{ asset('js/dashboard.js') }}"></script>
     <script src="{{ asset('js/modal.js') }}"></script>
 </body>
 </html>
