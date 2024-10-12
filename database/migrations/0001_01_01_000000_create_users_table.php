@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();  // Primary key
             $table->string('first_name')->nullable();  // Optional first name
             $table->string('last_name')->nullable();   // Optional last name
-            $table->integer('user_id')->unique();  // Unique user ID for login
+            $table->unsignedInteger('user_id')->unique();  // This column should be unsigned since we are referencing it
             $table->string('password');  // Password
             $table->string('role');  // Role: manager or employee
             $table->rememberToken();  // To remember the user session

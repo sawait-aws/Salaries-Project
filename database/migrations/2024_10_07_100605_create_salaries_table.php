@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('salaries', function (Blueprint $table) {
             $table->id();  // Primary key
-            $table->foreignId('user_id')->constrained('users');  // Reference to users table
+            $table->unsignedInteger('user_id');  // Foreign key should match the users table (unsigned)
             $table->integer('year');  // Year of the salary
             $table->integer('month');  // Month of the salary
             $table->decimal('gross_salary', 20, 2);  // Gross salary
@@ -19,6 +19,8 @@ return new class extends Migration
             $table->decimal('salaf_deducted', 20, 2)->default(0);  // Salaf deducted
             $table->decimal('salary_to_be_paid', 20, 2);  // Final salary to be paid
             $table->timestamps();
+
+            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
 
             $table->unique(['user_id', 'year', 'month']);  // Ensure unique entry per user, year, and month
         });
