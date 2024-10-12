@@ -16,6 +16,8 @@ class User extends Authenticatable
         'user_id',
         'password',
         'role',
+        'position',
+        'joining_date',
     ];
     
 

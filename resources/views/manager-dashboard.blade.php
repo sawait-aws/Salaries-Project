@@ -32,6 +32,8 @@
                     <a href="{{ route('manager.view.employee', $employee->id) }}" class="list-box">
                         <h4>{{ $employee->first_name }} {{ $employee->last_name }}</h4>
                         <p>User ID: {{ $employee->user_id }}</p>
+                        <p>Position: {{ $employee->position }}</p>
+                        <p>Joining Date: {{ $employee->joining_date }}</p>
                     </a>
                 @endforeach
             </div>
@@ -41,6 +43,8 @@
             @csrf
             <input type="text" name="first_name" placeholder="First Name" required>
             <input type="text" name="last_name" placeholder="Last Name" required>
+            <input type="text" name="position" placeholder="Position" required>
+            <input type="date" name="joining_date" placeholder="Joining Date" required>
             <input type="number" name="user_id" placeholder="User ID" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Add Employee</button>

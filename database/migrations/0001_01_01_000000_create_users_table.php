@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();  // Primary key
-            $table->string('first_name')->nullable();  // Optional first name
-            $table->string('last_name')->nullable();   // Optional last name
+            $table->string('first_name');  // Optional first name
+            $table->string('last_name');   // Optional last name
             $table->unsignedInteger('user_id')->unique();  // This column should be unsigned since we are referencing it
             $table->string('password');  // Password
-            $table->string('role');  // Role: manager or employee
+            $table->string('role');
+            $table->string('position');
+            $table->date('joining_date');
             $table->rememberToken();  // To remember the user session
             $table->timestamps();  // Created at and updated at timestamps
         });

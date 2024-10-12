@@ -30,6 +30,8 @@ class ManagerDashboardController extends Controller
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
+            'position' => 'required|string|max:255',
+            'joining_date'=> 'required|date',
             'user_id' => 'required|integer|unique:users,user_id',
             'password' => 'required|string',
         ]);
@@ -37,6 +39,8 @@ class ManagerDashboardController extends Controller
         User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
+            'position' => $request->position,
+            'joining_date'=> $request->joining_date,
             'user_id' => $request->user_id,
             'password' => Hash::make($request->password),
             'role' => 'employee',
@@ -85,7 +89,12 @@ class ManagerDashboardController extends Controller
             $commission = $data[4];
             $salaf = $data[5];
             $salafDeducted = $data[6];
-            $salaryToBePaid = $data[7];
+            $working_days = $data[7];
+            $unpaid_days = $data[8];
+            $sick_leave = $data[9];
+            $deduction = $data[10];
+            $bonus = $data[11];
+            $salaryToBePaid = $data[12];
 
             // Update or create the salary entry
             Salary::updateOrCreate(
@@ -99,6 +108,11 @@ class ManagerDashboardController extends Controller
                     'commission' => $commission,
                     'salaf' => $salaf,
                     'salaf_deducted' => $salafDeducted,
+                    'working_days' => $working_days,
+                    'unpaid_days' => $unpaid_days,
+                    'sick_leave' => $sick_leave,
+                    'deduction' => $deduction,
+                    'bonus' => $bonus,
                     'salary_to_be_paid' => $salaryToBePaid,
                 ]
             );
@@ -121,6 +135,8 @@ public function editEmployee(Request $request, $id)
             $validatedData = $request->validate([
                 'first_name' => 'required|string|max:255',
                 'last_name' => 'required|string|max:255',
+                'position' => 'required|string|max:255',
+                'joining_date'=> 'required|date',
                 'user_id' => 'required|numeric|unique:users,user_id,' . $user->id,
                 'password' => 'nullable', // Password is optional
             ]);
@@ -136,6 +152,8 @@ public function editEmployee(Request $request, $id)
                 // Step 3: Update user details
                 $user->first_name = $request->first_name;
                 $user->last_name = $request->last_name;
+                $user->position = $request->position;
+                $user->joining_date = $request->joining_date;
                 $user->user_id = $request->user_id;
 
                 // Update password only if provided
@@ -156,6 +174,11 @@ public function editEmployee(Request $request, $id)
                         'commission' => $salary['commission'],
                         'salaf' => $salary['salaf'],
                         'salaf_deducted' => $salary['salaf_deducted'],
+                        'working_days' => $salary['working_days'],
+                        'unpaid_days' => $salary['unpaid_days'],
+                        'sick_leave' => $salary['sick_leave'],
+                        'deduction' => $salary['deduction'],
+                        'bonus' => $salary['bonus'],
                         'salary_to_be_paid' => $salary['salary_to_be_paid']
                     ]);
                 }
@@ -163,7 +186,9 @@ public function editEmployee(Request $request, $id)
                 // If no change in user_id, just update other fields
                 $user->first_name = $request->first_name;
                 $user->last_name = $request->last_name;
-
+                $user->position = $request->position;
+                $user->joining_date = $request->joining_date; 
+                
                 if ($request->filled('password')) {
                     $user->password = Hash::make($request->password);
                 }

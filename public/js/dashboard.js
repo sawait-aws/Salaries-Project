@@ -34,6 +34,26 @@ window.loadSalaryDetails = function (salaryId) {
                             <p>${data.salaf_deducted}</p>
                         </div>
                         <div class="salary-item">
+                            <h4>Working Days</h4>
+                            <p>${data.working_days }</p>
+                        </div>
+                        <div class="salary-item">
+                            <h4>Unpaid Days</h4>
+                            <p>${data.unpaid_days }</p>
+                        </div>
+                        <div class="salary-item">
+                            <h4>Sick Leave</h4>
+                            <p>${data.sick_leave }</p>
+                        </div>
+                        <div class="salary-item">
+                            <h4>Deduction</h4>
+                            <p>${data.deduction }</p>
+                        </div>
+                        <div class="salary-item">
+                            <h4>Bonus</h4>
+                            <p>${data.bonus }</p>
+                        </div>
+                        <div class="salary-item">
                             <h4>Salary to Be Paid</h4>
                             <p>${data.salary_to_be_paid}</p>
                         </div>

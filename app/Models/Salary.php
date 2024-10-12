@@ -17,6 +17,11 @@ class Salary extends Model
         'commission',
         'salaf',
         'salaf_deducted',
+        'working_days',
+        'unpaid_days',
+        'sick_leave',
+        'deduction',
+        'bonus',
         'salary_to_be_paid',
     ];
 

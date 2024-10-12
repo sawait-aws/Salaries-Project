@@ -13,6 +13,8 @@
         <div class="profile-section">
             <h2>{{ $employee->first_name }} {{ $employee->last_name }}</h2>
             <p>User ID: {{ $employee->user_id }}</p>
+            <p>Position: {{ $employee->position }}</p>
+            <p>Joining Date: {{ $employee->joining_date }}</p>
             @if(Auth::user()->role == 'employee')
     <!-- Show logout button for employee -->
     <form method="POST" action="{{ route('logout') }}">
@@ -60,6 +62,26 @@
                 <div class="salary-item">
                     <h4>Salaf Deducted</h4>
                     <p>{{ $latestSalary->salaf_deducted }}</p>
+                </div>
+                <div class="salary-item">
+                    <h4>Working Days</h4>
+                    <p>{{ $latestSalary->working_days }}</p>
+                </div>
+                <div class="salary-item">
+                    <h4>Unpaid Days</h4>
+                    <p>{{ $latestSalary->unpaid_days }}</p>
+                </div>
+                <div class="salary-item">
+                    <h4>Sick Leave</h4>
+                    <p>{{ $latestSalary->sick_leave }}</p>
+                </div>
+                <div class="salary-item">
+                    <h4>Deduction</h4>
+                    <p>{{ $latestSalary->deduction }}</p>
+                </div>
+                <div class="salary-item">
+                    <h4>Bonus</h4>
+                    <p>{{ $latestSalary->bonus }}</p>
                 </div>
                 <div class="salary-item">
                     <h4>Salary to Be Paid</h4>

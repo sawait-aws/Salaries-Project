@@ -258,7 +258,8 @@ body {
 .add-employee-form input[type="text"],
 .add-employee-form input[type="number"],
 .add-employee-form input[type="password"],
-.add-employee-form input[type="file"] {
+.add-employee-form input[type="file"],
+.add-employee-form input[type="date"] {
     width: 90%;
     max-width: 400px;
     padding: 10px;

@@ -47,6 +47,16 @@
                 </div>
             
                 <div class="form-group">
+                    <label for="position" class="form-label">Position:</label>
+                    <input type="text" name="position" id="position" value="{{ $employee->position }}" required class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="joining_date" class="form-label">Joining Date:</label>
+                    <input type="date" name="joining_date" id="joining_date" value="{{ $employee->joining_date }}" required class="form-control">
+                </div>                
+
+                <div class="form-group">
                     <label for="user_id" class="form-label">User ID:</label>
                     <input type="number" name="user_id" id="user_id" value="{{ $employee->user_id }}" required class="form-control">
                 </div>

@@ -17,6 +17,11 @@ return new class extends Migration
             $table->decimal('commission', 20, 2)->default(0);  // Commission
             $table->decimal('salaf', 20, 2)->default(0);  // Advance payment
             $table->decimal('salaf_deducted', 20, 2)->default(0);  // Salaf deducted
+            $table->integer('working_days')->default(0);
+            $table->integer('unpaid_days')->default(0);
+            $table->integer('sick_leave')->default(0);
+            $table->decimal('deduction',20,2)->default(0);
+            $table->decimal('bonus',20,2)->default(0);
             $table->decimal('salary_to_be_paid', 20, 2);  // Final salary to be paid
             $table->timestamps();
 
