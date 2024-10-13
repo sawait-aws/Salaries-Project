@@ -40,13 +40,11 @@ class EmployeeDashboardController extends Controller
 
         // Check if the current user is an employee and the salary belongs to them
         if ($currentUser->role == 'employee' && $salary->user_id == $currentUser->user_id) {
-            session()->flash('success', 'Salary details loaded successfully.');
             return response()->json($salary);
         }
 
         // Check if the current user is a manager (allow viewing any salary)
         if ($currentUser->role == 'manager') {
-            session()->flash('success', 'Salary details loaded successfully.');
             return response()->json($salary);
         }
     }
