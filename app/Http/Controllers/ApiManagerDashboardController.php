@@ -36,7 +36,7 @@ class ApiManagerDashboardController extends Controller
             'position' => 'required|string|max:255',
             'joining_date'=> 'required|date',
             'user_id' => 'required|integer|unique:users,user_id',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string',
         ]);
 
         // Create new employee
@@ -157,7 +157,7 @@ class ApiManagerDashboardController extends Controller
                 'position' => 'required|string|max:255',
                 'joining_date' => 'required|date',
                 'user_id' => 'required|numeric|unique:users,user_id,' . $employee->id,
-                'password' => 'nullable|string|min:8', // Password is optional
+                'password' => 'nullable|string', // Password is optional
             ]);
 
             // Check if the user_id is being changed
