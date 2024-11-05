@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('role');
             $table->string('position');
             $table->date('joining_date');
+            $table->string('email_address')->unique()->nullable();
             $table->rememberToken();  // To remember the user session
             $table->timestamps();  // Created at and updated at timestamps
         });

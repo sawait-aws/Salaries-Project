@@ -20,6 +20,7 @@ class Salary extends Model
         'working_days',
         'unpaid_days',
         'sick_leave',
+        'remaining_annual_days_off',
         'deduction',
         'bonus',
         'salary_to_be_paid',

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('working_days')->default(0);
             $table->integer('unpaid_days')->default(0);
             $table->integer('sick_leave')->default(0);
+            $table->integer('remaining_annual_days_off')->default(0);
             $table->decimal('deduction',20,2)->default(0);
             $table->decimal('bonus',20,2)->default(0);
             $table->decimal('salary_to_be_paid', 20, 2);  // Final salary to be paid

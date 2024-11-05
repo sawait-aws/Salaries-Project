@@ -32,6 +32,7 @@ class ManagerDashboardController extends Controller
             'last_name' => 'required|string|max:255',
             'position' => 'required|string|max:255',
             'joining_date'=> 'required|date',
+            'email_address'=> 'required|string|max:255',
             'user_id' => 'required|integer|unique:users,user_id',
             'password' => 'required|string',
         ]);
@@ -41,6 +42,7 @@ class ManagerDashboardController extends Controller
             'last_name' => $request->last_name,
             'position' => $request->position,
             'joining_date'=> $request->joining_date,
+            'email_address'=> $request->email_address,
             'user_id' => $request->user_id,
             'password' => Hash::make($request->password),
             'role' => 'employee',
@@ -92,9 +94,10 @@ class ManagerDashboardController extends Controller
             $working_days = $data[7];
             $unpaid_days = $data[8];
             $sick_leave = $data[9];
-            $deduction = $data[10];
-            $bonus = $data[11];
-            $salaryToBePaid = $data[12];
+            $remaining_annual_days_off = $data[10];
+            $deduction = $data[11];
+            $bonus = $data[12];
+            $salaryToBePaid = $data[13];
 
             // Update or create the salary entry
             Salary::updateOrCreate(
@@ -111,6 +114,7 @@ class ManagerDashboardController extends Controller
                     'working_days' => $working_days,
                     'unpaid_days' => $unpaid_days,
                     'sick_leave' => $sick_leave,
+                    'remaining_annual_days_off' => $remaining_annual_days_off,
                     'deduction' => $deduction,
                     'bonus' => $bonus,
                     'salary_to_be_paid' => $salaryToBePaid,
@@ -136,6 +140,7 @@ public function editEmployee(Request $request, $id)
                 'first_name' => 'required|string|max:255',
                 'last_name' => 'required|string|max:255',
                 'position' => 'required|string|max:255',
+                'email_address'=> 'required|string|max:255',
                 'joining_date'=> 'required|date',
                 'user_id' => 'required|numeric|unique:users,user_id,' . $user->id,
                 'password' => 'nullable', // Password is optional
@@ -154,6 +159,7 @@ public function editEmployee(Request $request, $id)
                 $user->last_name = $request->last_name;
                 $user->position = $request->position;
                 $user->joining_date = $request->joining_date;
+                $user->email_address = $request->email_address;
                 $user->user_id = $request->user_id;
 
                 // Update password only if provided
@@ -177,6 +183,7 @@ public function editEmployee(Request $request, $id)
                         'working_days' => $salary['working_days'],
                         'unpaid_days' => $salary['unpaid_days'],
                         'sick_leave' => $salary['sick_leave'],
+                        'remaining_annual_days_off' => $salary['remaining_annual_days_off'],
                         'deduction' => $salary['deduction'],
                         'bonus' => $salary['bonus'],
                         'salary_to_be_paid' => $salary['salary_to_be_paid']
@@ -188,7 +195,8 @@ public function editEmployee(Request $request, $id)
                 $user->last_name = $request->last_name;
                 $user->position = $request->position;
                 $user->joining_date = $request->joining_date; 
-                
+                $user->email_address = $request->email_address;
+
                 if ($request->filled('password')) {
                     $user->password = Hash::make($request->password);
                 }

@@ -46,6 +46,10 @@ window.loadSalaryDetails = function (salaryId) {
                             <p>${data.sick_leave }</p>
                         </div>
                         <div class="salary-item">
+                            <h4>Annual Days Off</h4>
+                            <p>${data.remaining_annual_days_off }</p>
+                        </div>
+                        <div class="salary-item">
                             <h4>Deduction</h4>
                             <p>${data.deduction }</p>
                         </div>

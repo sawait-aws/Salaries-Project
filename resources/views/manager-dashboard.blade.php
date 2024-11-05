@@ -34,6 +34,7 @@
                         <p>User ID: {{ $employee->user_id }}</p>
                         <p>Position: {{ $employee->position }}</p>
                         <p>Joining Date: {{ $employee->joining_date }}</p>
+                        <p>Email Address: {{ $employee->email_address }}</p>
                     </a>
                 @endforeach
             </div>
@@ -45,6 +46,7 @@
             <input type="text" name="last_name" placeholder="Last Name" required>
             <input type="text" name="position" placeholder="Position" required>
             <input type="date" name="joining_date" placeholder="Joining Date" required>
+            <input type="text" name="email_address" placeholder="Email Address" required>
             <input type="number" name="user_id" placeholder="User ID" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Add Employee</button>

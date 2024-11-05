@@ -15,6 +15,7 @@
             <p>User ID: {{ $employee->user_id }}</p>
             <p>Position: {{ $employee->position }}</p>
             <p>Joining Date: {{ $employee->joining_date }}</p>
+            <p>Email Address: {{ $employee->email_address }}</p>
             @if(Auth::user()->role == 'employee')
     <!-- Show logout button for employee -->
     <form method="POST" action="{{ route('logout') }}">
@@ -74,6 +75,10 @@
                 <div class="salary-item">
                     <h4>Sick Leave</h4>
                     <p>{{ $latestSalary->sick_leave }}</p>
+                </div>
+                <div class="salary-item">
+                    <h4>Annual Days Off</h4>
+                    <p>{{ $latestSalary->remaining_annual_days_off }}</p>
                 </div>
                 <div class="salary-item">
                     <h4>Deduction</h4>

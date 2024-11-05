@@ -54,7 +54,12 @@
                 <div class="form-group">
                     <label for="joining_date" class="form-label">Joining Date:</label>
                     <input type="date" name="joining_date" id="joining_date" value="{{ $employee->joining_date }}" required class="form-control">
-                </div>                
+                </div>     
+                
+                <div class="form-group">
+                    <label for="email_address" class="form-label">Email Address:</label>
+                    <input type="text" name="email_address" id="email_address" value="{{ $employee->email_address }}" required class="form-control">
+                </div>
 
                 <div class="form-group">
                     <label for="user_id" class="form-label">User ID:</label>
