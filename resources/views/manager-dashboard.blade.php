@@ -24,6 +24,13 @@
             {{ session('success') }}
         </div>
     @endif
+    <ul class="nav-list">
+        <li><a href="{{route ('manager.dashboard')}}">Salary</a></li>
+        <li><a href="{{route ('tasks.create')}}">Tasks</a></li>
+        <li><a href="{{route ('manager.dashboard')}}">Prizes</a></li>
+        <li><a href="{{route ('manager.daysOff')}}">Days Off</a></li>
+        <li><a href="{{route ('accounting.money')}}">acc</a></li>
+      </ul>
         <!-- Employee List Section -->
         <div class="list-section">
             <h3>Employees</h3>

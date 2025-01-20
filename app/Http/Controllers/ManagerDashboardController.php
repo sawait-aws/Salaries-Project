@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DaysOffRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Salary;
@@ -10,6 +11,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Models\Task;
+use App\Models\Achievement;
+use App\Models\Box;
+use App\Models\Transaction;
 
 class ManagerDashboardController extends Controller
 {
@@ -78,6 +83,7 @@ class ManagerDashboardController extends Controller
 
     $file = $request->file('csv_file');
     $handle = fopen($file, 'r');
+    $achievementProcessed = false; // Flag to track if the achievement data is already processed
 
     if ($handle !== false) {
         // Skip the header row
@@ -98,6 +104,35 @@ class ManagerDashboardController extends Controller
             $deduction = $data[11];
             $bonus = $data[12];
             $salaryToBePaid = $data[13];
+
+            if (!$achievementProcessed && isset($data[17], $data[18], $data[19], $data[20], $data[21], $data[22], $data[23])) {
+                $achievementData = [
+                    'year' => $data[17],
+                    'month' => $data[18],
+                    'top_atv' => $data[19],
+                    'top_performer' => $data[20],
+                    'top_quality' => $data[21],
+                    'top_upselling' => $data[22],
+                    'employee_of_the_month' => $data[23],
+                ];
+
+                // Update or create the achievement entry
+                Achievement::updateOrCreate(
+                    [
+                        'year' => $achievementData['year'],
+                        'month' => $achievementData['month'],
+                    ],
+                    [
+                        'employee_of_the_month' => $achievementData['employee_of_the_month'],
+                        'top_atv' => $achievementData['top_atv'],
+                        'top_performer' => $achievementData['top_performer'],
+                        'top_quality' => $achievementData['top_quality'],
+                        'top_upselling' => $achievementData['top_upselling'],
+                    ]
+                );
+
+                $achievementProcessed = true; // Mark achievement as processed
+            }
 
             // Update or create the salary entry
             Salary::updateOrCreate(
@@ -245,4 +280,181 @@ public function viewEmployee($id)
     return view('employee-dashboard', compact('employee', 'latestSalary', 'salaries'));
 }
 
+public function createTasksPage()
+    {
+        $manager = Auth::user();
+        // Filter employees based on position and role
+        $employees = User::where('role', 'employee') // Filter by role
+            ->where('position', $manager->position) // Allowed positions
+            ->get(['user_id', 'first_name', 'last_name']);
+
+        // Pass employees to the view
+
+        return view('tasks-manager', compact('manager','employees'));
+    }
+
+    // Store the task
+    public function storeTasks(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'priority' => 'required|in:high,normal,low',
+            'emp' => 'required|json',
+        ]);
+
+        // Create a new task
+        Task::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'priority' => $request->priority,
+            'status' => 'pending', // Default status
+            'emp' => json_decode($request->emp), // Employee IDs as JSON
+        ]);
+
+        return redirect()->route('tasks.create')->with('success', 'Task added successfully.');
+    }
+
+    public function indexMDaysOff()
+{
+    $manager = Auth::user(); // Retrieve the authenticated manager
+    $daysOffRequests = DaysOffRequest::where('position', $manager->position)->get(); // Match by position
+
+    return view('days-off-manager', compact('manager', 'daysOffRequests'));
+}
+
+public function approveDaysOff(Request $request, $id)
+{
+    $daysOffRequest = DaysOffRequest::findOrFail($id); // Find the request
+    
+    // Update status based on role
+    if (Auth::user()->role == 'manager') {
+        $daysOffRequest->status = 'managerApprove'; // Mark as approved
+    } else if (Auth::user()->role == 'topManager') {
+        $daysOffRequest->status = 'TopManagerApprove'; // Mark as approved
+    }
+    
+    // Update manager notes if provided
+    if ($request->has('manager_notes')) {
+        $daysOffRequest->manager_notes = $request->input('manager_notes');
+    }
+
+    $daysOffRequest->save(); // Save changes
+
+    return redirect()->route('manager.daysOff')->with('success', 'Days off request approved.');
+}
+
+public function rejectDaysOff(Request $request, $id)
+{
+    $daysOffRequest = DaysOffRequest::findOrFail($id); // Find the request
+    $request->validate([
+        'manager_notes' => 'nullable|string|max:255',
+    ]);
+    // Update status based on role
+    if (Auth::user()->role == 'manager') {
+        $daysOffRequest->status = 'managerReject'; // Mark as rejected
+    } else if (Auth::user()->role == 'topManager') {
+        $daysOffRequest->status = 'TopManagerReject'; // Mark as rejected
+    }
+    
+    // Update manager notes if provided
+    if ($request->has('manager_notes')) {
+        $daysOffRequest->manager_notes = $request->input('manager_notes');
+    }
+
+    $daysOffRequest->save(); // Save changes
+
+    return redirect()->route('manager.daysOff')->with('success', 'Days off request rejected.');
+}
+
+public function BoxesStore(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'amount' => 'required|numeric|min:0',
+    ]);
+
+    Box::create([
+        'name' => $request->input('name'),
+        'amount' => $request->input('amount'),
+    ]);
+
+    return redirect()->route('accounting.money')->with('success', 'Box created.');
+}
+
+public function TransactionStore(Request $request)
+{
+    $request->validate([
+        'sender_box' => 'required|exists:boxes,id',
+        'receiver_box' => 'required|exists:boxes,id|different:sender_box',
+        'amount' => 'required|numeric|min:0.01',
+        'commission_kind' => 'required|in:percentage,static',
+        'commission_amount' => 'required|numeric|min:0',
+    ]);
+
+    $senderBox = Box::findOrFail($request->input('sender_box'));
+    $receiverBox = Box::findOrFail($request->input('receiver_box'));
+    $amount = $request->input('amount');
+    $commissionKind = $request->input('commission_kind');
+    $commissionAmount = $request->input('commission_amount');
+
+    // Calculate commission
+    $totalCommission = 0;
+    if ($commissionKind === 'percentage') {
+        $totalCommission = $amount * ($commissionAmount / 100);
+    } elseif ($commissionKind === 'static') {
+        $totalCommission = $commissionAmount;
+    }
+
+    // Total deduction includes the transaction amount and commission
+    $totalDeduction = $amount + $totalCommission;
+
+    // Prevent processing if insufficient funds
+    if ($senderBox->amount < $totalDeduction) {
+        abort(400, 'Insufficient funds in the sender box.');
+    }
+
+    // Deduct from sender and add to receiver
+    $senderBox->amount -= $totalDeduction;
+    $receiverBox->amount += $amount;
+
+    // Save the updated amounts
+    $senderBox->save();
+    $receiverBox->save();
+
+    $emp = Auth::user();
+
+    // Record the transaction
+    Transaction::create([
+        'sender_box' => $senderBox->name,
+        'sender_box_amount' => $senderBox->amount + $totalDeduction,
+        'receiver_box' => $receiverBox->name,
+        'receiver_box_amount' => $receiverBox->amount - $amount,
+        'amount' => $amount,
+        'commission_kind' => $commissionKind,
+        'commission_amount' => $totalCommission,
+        'user_id' => $emp->user_id,
+        'user_first_name' => $emp->first_name,
+        'user_last_name' => $emp->last_name,
+        'transaction_date' => now(),
+    ]);
+
+    return redirect()->route('accounting.money')->with('success', 'Transaction completed with commission applied.');
+}
+
+    public function deleteBox($id)
+    {
+        $box = Box::findOrFail($id);
+        $box->delete();
+
+        return redirect()->route('accounting.money')->with('success', 'Box deleted successfully');
+    }
+    public function indexAcc()
+    {
+        $manager = Auth::user();
+        $boxes = Box::all();  // Fetch all box names and amounts
+        // Fetch all transactions
+        $transactions = Transaction::orderBy('transaction_date', 'desc')->get();  
+        return view('manager-acc', compact('manager','boxes', 'transactions'));
+    }
 }

@@ -51,69 +51,46 @@
     <li><a href="{{route ('emp.achievements')}}">Achievements</a></li>
     <li><a href="{{route ('emp.daysOff')}}">Days Off</a></li>
   </ul>
-        <div class="salary-section">
-            <h3 class="salary-title">Salary Details ({{ $latestSalary->year }}-{{ $latestSalary->month }})</h3>
-            <div class="salary-card">
-                <div class="salary-item">
-                    <h4>Gross Salary</h4>
-                    <p>{{ $latestSalary->gross_salary }}</p>
-                </div>
-                <div class="salary-item">
-                    <h4>Commission</h4>
-                    <p>{{ $latestSalary->commission }}</p>
-                </div>
-                <div class="salary-item">
-                    <h4>Salaf</h4>
-                    <p>{{ $latestSalary->salaf }}</p>
-                </div>
-                <div class="salary-item">
-                    <h4>Salaf Deducted</h4>
-                    <p>{{ $latestSalary->salaf_deducted }}</p>
-                </div>
-                <div class="salary-item">
-                    <h4>Working Days</h4>
-                    <p>{{ $latestSalary->working_days }}</p>
-                </div>
-                <div class="salary-item">
-                    <h4>Unpaid Days</h4>
-                    <p>{{ $latestSalary->unpaid_days }}</p>
-                </div>
-                <div class="salary-item">
-                    <h4>Sick Leave</h4>
-                    <p>{{ $latestSalary->sick_leave }}</p>
-                </div>
-                <div class="salary-item">
-                    <h4>Annual Days Off</h4>
-                    <p>{{ $latestSalary->remaining_annual_days_off }}</p>
-                </div>
-                <div class="salary-item">
-                    <h4>Deduction</h4>
-                    <p>{{ $latestSalary->deduction }}</p>
-                </div>
-                <div class="salary-item">
-                    <h4>Bonus</h4>
-                    <p>{{ $latestSalary->bonus }}</p>
-                </div>
-                <div class="salary-item">
-                    <h4>Salary to Be Paid</h4>
-                    <p>{{ $latestSalary->salary_to_be_paid }}</p>
-                </div>
-            </div>
-        </div>
         
+{{-- employee/achievements.blade.php --}}
+<div class="container">
+    <h2>Your Achievements</h2>
 
-        <!-- Previous Salaries Section -->
-        <div class="list-section">
-            <h3>Previous Salaries</h3>
-            <div class="list-boxes">
-                @foreach($salaries as $salary)
-                    <div class="list-box" data-salary-id="{{ $salary->id }}">
-                        <h4>{{ $salary->year }}-{{ $salary->month }}</h4>
-                    </div>
-                @endforeach
-            </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Achievement</th>
+                        <th>Month/Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Employee of the Month</td>
+                        <td>{{ !empty($employeeOfTheMonth) ? implode(', ', $employeeOfTheMonth) : 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <td>Top ATV</td>
+                        <td>{{ !empty($topAtv) ? implode(', ', $topAtv) : 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <td>Top Performer</td>
+                        <td>{{ !empty($topPerformer) ? implode(', ', $topPerformer) : 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <td>Top Quality</td>
+                        <td>{{ !empty($topQuality) ? implode(', ', $topQuality) : 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <td>Top Upselling</td>
+                        <td>{{ !empty($topUpselling) ? implode(', ', $topUpselling) : 'N/A' }}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 
     <script src="{{ asset('js/dashboard.js') }}"></script>
 
